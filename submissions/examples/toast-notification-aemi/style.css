@@ -1,0 +1,243 @@
+/* =====================================================
+   Glassmorphism Toast Notification Component
+   Submission by: 24CS059Aemi | GSSoC '26
+   ease-toast-aemi
+   ===================================================== */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --toast-radius:    14px;
+  --toast-blur:      16px;
+  --toast-duration:  0.4s;
+  --toast-success:   rgba(74, 222, 128, 0.15);
+  --toast-warning:   rgba(251, 191, 36, 0.15);
+  --toast-error:     rgba(248, 113, 113, 0.15);
+  --toast-info:      rgba(96, 165, 250, 0.15);
+  --toast-border-success: rgba(74, 222, 128, 0.4);
+  --toast-border-warning: rgba(251, 191, 36, 0.4);
+  --toast-border-error:   rgba(248, 113, 113, 0.4);
+  --toast-border-info:    rgba(96, 165, 250, 0.4);
+}
+
+/* ---------- Page / Demo Stage ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #f8fafc;
+}
+
+.demo-stage {
+  flex-direction: column;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+}
+
+.demo-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.75rem;
+}
+
+.demo-subtitle {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0 0 2rem;
+}
+
+/* ---------- Trigger Buttons ---------- */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.ease-btn-demo {
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.ease-btn-demo:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74,222,128,0.2); }
+.btn-warning          { background: rgba(251,191,36,0.12); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+.btn-warning:hover    { box-shadow: 0 6px 16px rgba(251,191,36,0.2); }
+.btn-error            { background: rgba(248,113,113,0.12); color: #f87171; border-color: rgba(248,113,113,0.3); }
+.btn-error:hover      { box-shadow: 0 6px 16px rgba(248,113,113,0.2); }
+.btn-info             { background: rgba(96,165,250,0.12); color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+.btn-info:hover       { box-shadow: 0 6px 16px rgba(96,165,250,0.2); }
+
+/* ---------- Hidden Trigger Checkboxes ---------- */
+.toast-trigger { display: none; }
+
+/* ---------- Toast Container ---------- */
+.ease-toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.ease-toast-container-bottom {
+  top: auto;
+  bottom: 1.5rem;
+}
+
+/* ---------- Base Toast ---------- */
+.ease-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--toast-radius);
+  backdrop-filter: blur(var(--toast-blur));
+  -webkit-backdrop-filter: blur(var(--toast-blur));
+  min-width: 300px;
+  max-width: 380px;
+  pointer-events: all;
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateX(120%);
+  transition: opacity var(--toast-duration) cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform var(--toast-duration) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Variant Colours ---------- */
+.ease-toast-success {
+  background: var(--toast-success);
+  border: 1px solid var(--toast-border-success);
+  box-shadow: 0 8px 32px rgba(74, 222, 128, 0.12);
+}
+.ease-toast-warning {
+  background: var(--toast-warning);
+  border: 1px solid var(--toast-border-warning);
+  box-shadow: 0 8px 32px rgba(251, 191, 36, 0.12);
+}
+.ease-toast-error {
+  background: var(--toast-error);
+  border: 1px solid var(--toast-border-error);
+  box-shadow: 0 8px 32px rgba(248, 113, 113, 0.12);
+}
+.ease-toast-info {
+  background: var(--toast-info);
+  border: 1px solid var(--toast-border-info);
+  box-shadow: 0 8px 32px rgba(96, 165, 250, 0.12);
+}
+.ease-toast-progress {
+  background: rgba(129, 140, 248, 0.15);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  box-shadow: 0 8px 32px rgba(129, 140, 248, 0.12);
+  /* Always visible */
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- CSS-Only Toggle: Show Toast When Checkbox Checked ---------- */
+#toast-success-toggle:checked ~ .ease-toast-container #toast-success,
+#toast-warning-toggle:checked ~ .ease-toast-container #toast-warning,
+#toast-error-toggle:checked   ~ .ease-toast-container #toast-error,
+#toast-info-toggle:checked    ~ .ease-toast-container #toast-info {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- Toast Inner Parts ---------- */
+.toast-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.toast-content strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.toast-content span {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.toast-close {
+  font-size: 0.8rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+.toast-close:hover { color: #f1f5f9; }
+
+/* ---------- Progress Bar Toast ---------- */
+.ease-progress-bar {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  height: 6px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.ease-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #818cf8, #60a5fa);
+  animation: ease-progress-run 3s ease-in-out infinite;
+}
+
+@keyframes ease-progress-run {
+  0%   { width: 0%;   opacity: 1; }
+  80%  { width: 100%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ease-toast {
+    transition: none;
+  }
+  .ease-progress-fill {
+    animation: none;
+    width: 60%;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .ease-toast-container {
+    left: 1rem;
+    right: 1rem;
+  }
+  .ease-toast {
+    min-width: unset;
+    max-width: 100%;
+  }
+}

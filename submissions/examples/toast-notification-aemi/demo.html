@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glassmorphism Toast Notification | EaseMotion CSS Demo</title>
+
+  <!-- EaseMotion CSS via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easemotion-css/easemotion.min.css" />
+
+  <!-- Component Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Demo Controls -->
+  <div class="demo-stage ease-center ease-fade-in">
+    <h1 class="demo-title ease-slide-up">Glassmorphism Toast Notifications</h1>
+    <p class="demo-subtitle ease-slide-up ease-delay-100">CSS-only animated notification toasts with glassmorphism effect</p>
+
+    <!-- Trigger Buttons -->
+    <div class="btn-row ease-slide-up ease-delay-200">
+      <label class="ease-btn-demo" for="toast-success-toggle">
+        ✅ Show Success
+      </label>
+      <label class="ease-btn-demo btn-warning" for="toast-warning-toggle">
+        ⚠️ Show Warning
+      </label>
+      <label class="ease-btn-demo btn-error" for="toast-error-toggle">
+        ❌ Show Error
+      </label>
+      <label class="ease-btn-demo btn-info" for="toast-info-toggle">
+        ℹ️ Show Info
+      </label>
+    </div>
+  </div>
+
+  <!-- Hidden Checkboxes (CSS-only toggle trick) -->
+  <input type="checkbox" id="toast-success-toggle" class="toast-trigger" />
+  <input type="checkbox" id="toast-warning-toggle" class="toast-trigger" />
+  <input type="checkbox" id="toast-error-toggle" class="toast-trigger" />
+  <input type="checkbox" id="toast-info-toggle" class="toast-trigger" />
+
+  <!-- Toast Container -->
+  <div class="ease-toast-container">
+
+    <!-- Success Toast -->
+    <div class="ease-toast ease-toast-success" id="toast-success">
+      <div class="toast-icon">✅</div>
+      <div class="toast-content">
+        <strong>Success!</strong>
+        <span>Your changes have been saved successfully.</span>
+      </div>
+      <label class="toast-close" for="toast-success-toggle" aria-label="Close">✕</label>
+    </div>
+
+    <!-- Warning Toast -->
+    <div class="ease-toast ease-toast-warning" id="toast-warning">
+      <div class="toast-icon">⚠️</div>
+      <div class="toast-content">
+        <strong>Warning!</strong>
+        <span>Please review your input before proceeding.</span>
+      </div>
+      <label class="toast-close" for="toast-warning-toggle" aria-label="Close">✕</label>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="ease-toast ease-toast-error" id="toast-error">
+      <div class="toast-icon">❌</div>
+      <div class="toast-content">
+        <strong>Error!</strong>
+        <span>Something went wrong. Please try again.</span>
+      </div>
+      <label class="toast-close" for="toast-error-toggle" aria-label="Close">✕</label>
+    </div>
+
+    <!-- Info Toast -->
+    <div class="ease-toast ease-toast-info" id="toast-info">
+      <div class="toast-icon">ℹ️</div>
+      <div class="toast-content">
+        <strong>Info</strong>
+        <span>A new update is available for your app.</span>
+      </div>
+      <label class="toast-close" for="toast-info-toggle" aria-label="Close">✕</label>
+    </div>
+
+  </div>
+
+  <!-- Progress bar toast (always visible as demo) -->
+  <div class="ease-toast-container ease-toast-container-bottom">
+    <div class="ease-toast ease-toast-progress ease-fade-in ease-delay-300">
+      <div class="toast-icon">⬆️</div>
+      <div class="toast-content">
+        <strong>Uploading file...</strong>
+        <div class="ease-progress-bar">
+          <div class="ease-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
