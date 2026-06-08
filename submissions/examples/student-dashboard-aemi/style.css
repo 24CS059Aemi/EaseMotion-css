@@ -1,0 +1,271 @@
+/* =====================================================
+   Student Academic & Portfolio Dashboard Component
+   Submission by: 24CS059Aemi | GSSoC '26
+   Uses EaseMotion CSS utilities + custom component CSS
+   ===================================================== */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --dash-bg:       #0f172a;
+  --dash-surface:  #1e293b;
+  --dash-border:   #334155;
+  --dash-text:     #f8fafc;
+  --dash-muted:    #94a3b8;
+  --dash-accent:   #38bdf8;
+  --dash-accent2:  #818cf8;
+  --dash-success:  #4ade80;
+  --dash-radius:   14px;
+}
+
+/* ---------- Dashboard Wrapper ---------- */
+.student-dashboard {
+  background-color: var(--dash-bg);
+  color: var(--dash-text);
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ---------- Header ---------- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--dash-border);
+}
+
+.dashboard-header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--dash-accent), var(--dash-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.35rem 0;
+}
+
+.dashboard-header p {
+  color: var(--dash-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.header-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--dash-accent), var(--dash-accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #0f172a;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ---------- Section Label ---------- */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dash-muted);
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Skill Marquee ---------- */
+.ease-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--dash-border);
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.ease-marquee-track {
+  display: inline-flex;
+  gap: 1.5rem;
+  animation: ease-marquee-slide 18s linear infinite;
+}
+
+.ease-marquee-pause:hover .ease-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes ease-marquee-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--dash-accent);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ---------- Main Grid ---------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ---------- Cards ---------- */
+.dashboard-card {
+  background-color: var(--dash-surface);
+  border: 1px solid var(--dash-border);
+  padding: 1.4rem;
+  border-radius: var(--dash-radius);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease;
+}
+
+/* EaseMotion ease-hover-lift override for accent shadow */
+.dashboard-card.ease-hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px -12px rgba(56, 189, 248, 0.25);
+}
+
+.card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.dashboard-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--dash-text);
+}
+
+.dashboard-card p {
+  font-size: 0.875rem;
+  color: var(--dash-muted);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+/* ---------- Card Footer ---------- */
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.status-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-done {
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--dash-success);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.tech-tag {
+  font-size: 0.72rem;
+  color: var(--dash-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--dash-border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+}
+
+/* ---------- Schedule List ---------- */
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.schedule-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--dash-muted);
+}
+
+.time-badge {
+  background: rgba(129, 140, 248, 0.12);
+  color: var(--dash-accent2);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Stats Grid ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--dash-border);
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--dash-accent), var(--dash-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--dash-muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .student-dashboard {
+    padding: 1.25rem;
+  }
+  .dashboard-header h1 {
+    font-size: 1.4rem;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

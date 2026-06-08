@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Academic & Portfolio Dashboard | EaseMotion CSS Demo</title>
+
+  <!-- EaseMotion CSS via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easemotion-css/easemotion.min.css" />
+
+  <!-- Component Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="student-dashboard ease-fade-in">
+
+    <!-- Header -->
+    <header class="dashboard-header ease-slide-up">
+      <div class="header-text">
+        <h1>Student Portfolio Hub</h1>
+        <p>Academic Tracker &amp; Project Showcase</p>
+      </div>
+      <div class="header-avatar ease-hover-grow">
+        <span>24CS</span>
+      </div>
+    </header>
+
+    <!-- Skill Marquee -->
+    <section class="section-label">⚡ Tech Stack</section>
+    <div class="ease-marquee ease-marquee-pause">
+      <div class="ease-marquee-track">
+        <span class="badge">HTML5</span>
+        <span class="badge">CSS3</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">Python</span>
+        <span class="badge">React</span>
+        <span class="badge">Machine Learning</span>
+        <span class="badge">XGBoost</span>
+        <span class="badge">Git &amp; GitHub</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="badge">HTML5</span>
+        <span class="badge">CSS3</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">Python</span>
+        <span class="badge">React</span>
+        <span class="badge">Machine Learning</span>
+        <span class="badge">XGBoost</span>
+        <span class="badge">Git &amp; GitHub</span>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+
+      <!-- Project Card 1 -->
+      <div class="dashboard-card project-card ease-hover-lift ease-slide-up">
+        <div class="card-icon">🚀</div>
+        <h3>Mars Weather Prediction</h3>
+        <p>End-to-end ML pipeline using XGBoost to predict Martian temperature &amp; pressure from NASA Curiosity Rover data.</p>
+        <div class="card-footer">
+          <span class="status-tag status-done">Completed</span>
+          <span class="tech-tag">Python · XGBoost</span>
+        </div>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="dashboard-card project-card ease-hover-lift ease-slide-up ease-delay-100">
+        <div class="card-icon">💊</div>
+        <h3>Bina Medicals</h3>
+        <p>Full-stack Pharmacy Management System with Flask, SQL backend, AI-driven expiry prediction and mobile-responsive UI.</p>
+        <div class="card-footer">
+          <span class="status-tag status-done">Completed</span>
+          <span class="tech-tag">Flask · SQL · JS</span>
+        </div>
+      </div>
+
+      <!-- Schedule Card -->
+      <div class="dashboard-card schedule-card ease-hover-lift ease-slide-up ease-delay-200">
+        <div class="card-icon">📅</div>
+        <h3>Today's Schedule</h3>
+        <ul class="schedule-list">
+          <li>
+            <span class="time-badge">09:00 AM</span>
+            <span>Data Structures Lab</span>
+          </li>
+          <li>
+            <span class="time-badge">11:30 AM</span>
+            <span>Theory of Computation</span>
+          </li>
+          <li>
+            <span class="time-badge">02:00 PM</span>
+            <span>Machine Learning Seminar</span>
+          </li>
+          <li>
+            <span class="time-badge">04:30 PM</span>
+            <span>Open Source Contribution</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Stats Card -->
+      <div class="dashboard-card stats-card ease-hover-lift ease-slide-up ease-delay-300">
+        <div class="card-icon">📊</div>
+        <h3>Academic Stats</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-value ease-pulse">9.1</span>
+            <span class="stat-label">CGPA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">5</span>
+            <span class="stat-label">PRs Merged</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">2</span>
+            <span class="stat-label">GSSoC PRs</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
